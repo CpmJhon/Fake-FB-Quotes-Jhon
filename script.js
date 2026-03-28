@@ -298,23 +298,45 @@ async function generateMockup() {
         
         const imageUrl = URL.createObjectURL(blob);
         
+        // Tampilkan hasil dengan 2 opsi download
         resultDiv.innerHTML = `
             <div class="result-content">
                 <img src="${imageUrl}" alt="Mockup Result" id="resultImage" style="max-width:100%; border-radius:1rem; box-shadow:0 8px 20px rgba(0,0,0,0.3);" />
-                <div style="margin-top: 20px;">
+                <div class="button-group">
                     <button class="download-btn" id="downloadImageBtn">
                         <i class="fas fa-download"></i> Download Gambar
                     </button>
+                    <button class="download-btn download-btn-alt" id="openInNewTabBtn">
+                        <i class="fas fa-external-link-alt"></i> Buka di Tab Baru
+                    </button>
                 </div>
+                <p style="font-size: 0.7rem; color: #6c757d; margin-top: 12px;">
+                    💡 Tips: Jika download tidak berfungsi, gunakan opsi "Buka di Tab Baru" lalu klik kanan > Save Image As
+                </p>
             </div>
         `;
         
+        // Event handler untuk tombol download
         const downloadBtn = document.getElementById('downloadImageBtn');
         if (downloadBtn) {
-            downloadBtn.onclick = () => {
-                if (window.downloadImage) {
+            downloadBtn.onclick = (e) => {
+                e.preventDefault();
+                if (typeof window.downloadImage === 'function') {
                     window.downloadImage(imageUrl, `${activeFormat.id}_mockup_${Date.now()}.png`);
+                } else {
+                    console.error('downloadImage not found, using fallback');
+                    window.open(imageUrl, '_blank');
                 }
+            };
+        }
+        
+        // Event handler untuk tombol buka di tab baru
+        const openTabBtn = document.getElementById('openInNewTabBtn');
+        if (openTabBtn) {
+            openTabBtn.onclick = (e) => {
+                e.preventDefault();
+                window.open(imageUrl, '_blank');
+                if (window.showToast) window.showToast('Gambar dibuka di tab baru', 'info');
             };
         }
         
