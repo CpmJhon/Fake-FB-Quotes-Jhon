@@ -72,6 +72,142 @@ const formats = [
 
 let activeFormat = formats[0];
 
+// ========== SPLASH SCREEN LOGIC ==========
+function initSplashScreen() {
+    const splashScreen = document.getElementById('splashScreen');
+    const mainContent = document.getElementById('mainContent');
+    const progressFill = document.getElementById('progressFill');
+    const loadingPercentage = document.getElementById('loadingPercentage');
+    const loadingStatus = document.getElementById('loadingStatus');
+    
+    const statusMessages = [
+        { text: '🎨 Loading awesome features...', progress: 20 },
+        { text: '⚡ Connecting to ZENZX API...', progress: 40 },
+        { text: '✨ Preparing mockup generators...', progress: 60 },
+        { text: '🚀 Almost ready...', progress: 80 },
+        { text: '🎉 Welcome to QuickFake!', progress: 100 }
+    ];
+    
+    let currentProgress = 0;
+    let messageIndex = 0;
+    
+    // Create particles
+    createParticles();
+    
+    function updateProgress() {
+        const targetProgress = statusMessages[messageIndex]?.progress || 100;
+        
+        const interval = setInterval(() => {
+            if (currentProgress < targetProgress) {
+                currentProgress++;
+                progressFill.style.width = currentProgress + '%';
+                loadingPercentage.textContent = currentProgress;
+            } else {
+                clearInterval(interval);
+                if (messageIndex < statusMessages.length - 1) {
+                    messageIndex++;
+                    loadingStatus.innerHTML = `<i class="fas fa-${messageIndex === 1 ? 'network-wired' : messageIndex === 2 ? 'palette' : messageIndex === 3 ? 'rocket' : 'check-circle'}"></i> ${statusMessages[messageIndex].text}`;
+                    updateProgress();
+                } else {
+                    // Splash screen selesai
+                    setTimeout(() => {
+                        splashScreen.classList.add('fade-out');
+                        mainContent.classList.remove('hidden');
+                        setTimeout(() => {
+                            mainContent.classList.add('visible');
+                            splashScreen.style.display = 'none';
+                        }, 800);
+                    }, 500);
+                }
+            }
+        }, 30);
+    }
+    
+    updateProgress();
+}
+
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+    
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 3 + 's';
+        particle.style.animationDuration = 2 + Math.random() * 2 + 's';
+        particle.style.background = `hsl(${Math.random() * 60 + 200}, 70%, 60%)`;
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// ========== GENERATE LOADING REAL-TIME ==========
+function showGenerateLoading() {
+    const generateBtn = document.getElementById('generateBtn');
+    const generateLoading = document.getElementById('generateLoading');
+    const progressFill = document.getElementById('generateProgressFill');
+    const progressPercent = document.getElementById('generateProgressPercent');
+    const loadingMessage = document.getElementById('generateLoadingMessage');
+    
+    generateBtn.classList.add('hidden');
+    generateLoading.classList.remove('hidden');
+    
+    const messages = [
+        { icon: 'fa-paintbrush-fine', text: 'Creating your mockup...' },
+        { icon: 'fa-cogs', text: 'Processing image...' },
+        { icon: 'fa-magic', text: 'Applying effects...' },
+        { icon: 'fa-check-circle', text: 'Finalizing...' }
+    ];
+    
+    let progress = 0;
+    let msgIndex = 0;
+    
+    const interval = setInterval(() => {
+        if (progress < 95) {
+            progress += Math.random() * 15;
+            if (progress > 95) progress = 95;
+            progressFill.style.width = progress + '%';
+            progressPercent.textContent = Math.floor(progress);
+        }
+        
+        if (progress >= 30 && msgIndex === 0) {
+            msgIndex++;
+            loadingMessage.innerHTML = `<i class="fas ${messages[msgIndex].icon}"></i> ${messages[msgIndex].text}`;
+        } else if (progress >= 60 && msgIndex === 1) {
+            msgIndex++;
+            loadingMessage.innerHTML = `<i class="fas ${messages[msgIndex].icon}"></i> ${messages[msgIndex].text}`;
+        } else if (progress >= 80 && msgIndex === 2) {
+            msgIndex++;
+            loadingMessage.innerHTML = `<i class="fas ${messages[msgIndex].icon}"></i> ${messages[msgIndex].text}`;
+        }
+    }, 200);
+    
+    return { interval, progressFill, progressPercent };
+}
+
+function hideGenerateLoading(loadingInterval, progressFill, progressPercent, success = true) {
+    if (loadingInterval) clearInterval(loadingInterval);
+    
+    const generateBtn = document.getElementById('generateBtn');
+    const generateLoading = document.getElementById('generateLoading');
+    
+    if (success) {
+        if (progressFill && progressPercent) {
+            progressFill.style.width = '100%';
+            progressPercent.textContent = '100';
+        }
+        
+        setTimeout(() => {
+            generateLoading.classList.add('hidden');
+            generateBtn.classList.remove('hidden');
+        }, 500);
+    } else {
+        generateLoading.classList.add('hidden');
+        generateBtn.classList.remove('hidden');
+    }
+}
+
+// ========== MAIN FUNCTIONS ==========
 function renderFormatGrid() {
     const grid = document.getElementById('formatGrid');
     grid.innerHTML = formats.map(f => `
@@ -86,7 +222,6 @@ function renderFormatGrid() {
             activeFormat = formats.find(f => f.id === id);
             renderFormatGrid();
             renderParamForm();
-            // Reset result area saat ganti format
             const resultArea = document.getElementById('resultArea');
             resultArea.innerHTML = `<div class="result-placeholder"><i class="fas fa-image"></i><p>Hasil mockup akan tampil di sini</p></div>`;
         });
@@ -113,36 +248,26 @@ function renderParamForm() {
 
 async function generateMockup() {
     const resultDiv = document.getElementById('resultArea');
-    const generateBtn = document.getElementById('generateBtn');
-    
-    // Tampilkan loading state pada tombol
-    generateBtn.classList.add('loading');
-    const originalBtnText = generateBtn.innerHTML;
-    generateBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memproses...';
-    
-    resultDiv.innerHTML = `<div class="result-placeholder"><i class="fas fa-spinner fa-pulse"></i><p>Sedang membuat mockup...</p></div>`;
     
     // Kumpulkan parameter dari form
     const inputs = document.querySelectorAll('#paramForm input, #paramForm textarea');
     let params = {};
-    let hasParams = false;
     
     inputs.forEach(inp => {
         const value = inp.value.trim();
         if (value) {
             params[inp.name] = encodeURIComponent(value);
-            hasParams = true;
         }
     });
     
     // Validasi untuk brat text
     if (activeFormat.id === 'brat' && !params.text) {
-        resultDiv.innerHTML = `<div class="result-placeholder"><i class="fas fa-exclamation-triangle"></i><p>⚠️ Masukkan teks terlebih dahulu</p></div>`;
-        generateBtn.classList.remove('loading');
-        generateBtn.innerHTML = originalBtnText;
         if (window.showToast) window.showToast('Mohon isi parameter teks', 'error');
         return;
     }
+    
+    // Tampilkan loading real-time
+    const { interval, progressFill, progressPercent } = showGenerateLoading();
     
     // Buat URL endpoint API
     let apiUrl = `https://api.zenzxz.my.id${activeFormat.endpoint}?`;
@@ -155,13 +280,10 @@ async function generateMockup() {
     console.log('Requesting:', apiUrl);
     
     try {
-        // Fetch gambar dari API
         const response = await fetch(apiUrl, {
             method: 'GET',
             mode: 'cors',
-            headers: {
-                'Accept': 'image/*'
-            }
+            headers: { 'Accept': 'image/*' }
         });
         
         if (!response.ok) {
@@ -170,10 +292,8 @@ async function generateMockup() {
         
         const blob = await response.blob();
         
-        // Validasi blob adalah gambar
         if (!blob.type.startsWith('image/')) {
-            const text = await blob.text();
-            throw new Error('API tidak mengembalikan format gambar: ' + text.substring(0, 100));
+            throw new Error('API tidak mengembalikan format gambar');
         }
         
         const imageUrl = URL.createObjectURL(blob);
@@ -189,19 +309,16 @@ async function generateMockup() {
             </div>
         `;
         
-        // Pasang event download
         const downloadBtn = document.getElementById('downloadImageBtn');
         if (downloadBtn) {
             downloadBtn.onclick = () => {
                 if (window.downloadImage) {
                     window.downloadImage(imageUrl, `${activeFormat.id}_mockup_${Date.now()}.png`);
-                } else {
-                    console.error('downloadImage function not found');
-                    alert('Fungsi download belum tersedia');
                 }
             };
         }
         
+        hideGenerateLoading(interval, progressFill, progressPercent, true);
         if (window.showToast) window.showToast('Mockup berhasil dibuat!', 'success');
         
     } catch (err) {
@@ -213,16 +330,14 @@ async function generateMockup() {
                 <p style="font-size:0.8rem; margin-top:8px;">Coba periksa koneksi internet dan parameter yang dimasukkan</p>
             </div>
         `;
+        hideGenerateLoading(interval, progressFill, progressPercent, false);
         if (window.showToast) window.showToast(err.message, 'error');
-    } finally {
-        // Kembalikan tombol ke keadaan semula
-        generateBtn.classList.remove('loading');
-        generateBtn.innerHTML = originalBtnText;
     }
 }
 
-// Inisialisasi & event listener
+// ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', () => {
+    initSplashScreen();
     renderFormatGrid();
     renderParamForm();
     const generateBtn = document.getElementById('generateBtn');

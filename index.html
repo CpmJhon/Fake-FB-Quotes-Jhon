@@ -10,49 +10,99 @@
 </head>
 <body>
 
-    <div class="bg-gradient"></div>
-
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-bolt"></i>
-                <h1>Quick<span>Fake</span></h1>
+    <!-- SPLASH SCREEN -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <div class="logo-animation">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h1 class="splash-title">Quick<span>Fake</span></h1>
+                <div class="slogan">Mockup Generator • Limitless Creativity</div>
             </div>
-            <p class="tagline">Generator mockup kekinian • hasil instan • gratis</p>
-        </header>
-
-        <div class="main-card">
-            <!-- Pilihan Format -->
-            <div class="format-section">
-                <label><i class="fas fa-layer-group"></i> Pilih Format Mockup</label>
-                <div class="format-grid" id="formatGrid">
-                    <!-- diisi JS -->
+            <div class="loader-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="loading-text">
+                    <span id="loadingPercentage">0</span>%
+                </div>
+                <div class="loading-status" id="loadingStatus">
+                    <i class="fas fa-magic"></i> Initializing...
                 </div>
             </div>
-
-            <!-- Parameter Form -->
-            <div class="param-section">
-                <label><i class="fas fa-sliders-h"></i> Isi Parameter</label>
-                <div class="param-form" id="paramForm">
-                    <!-- form dinamis -->
-                </div>
+            <div class="splash-footer">
+                <div class="particles" id="particles"></div>
+                <p>powered by ZENZX API</p>
             </div>
+        </div>
+    </div>
 
-            <!-- Tombol Generate & Hasil -->
-            <div class="action-section">
-                <button id="generateBtn" class="btn-generate"><i class="fas fa-magic"></i> Generate Sekarang</button>
-                <div id="resultArea" class="result-area">
-                    <div class="result-placeholder">
-                        <i class="fas fa-image"></i>
-                        <p>Hasil mockup akan tampil di sini</p>
+    <!-- MAIN CONTENT (Awalnya tersembunyi) -->
+    <div id="mainContent" class="main-content hidden">
+        <div class="bg-gradient"></div>
+
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <h1>Quick<span>Fake</span></h1>
+                </div>
+                <p class="tagline">Generator mockup kekinian • hasil instan • gratis</p>
+            </header>
+
+            <div class="main-card">
+                <!-- Pilihan Format -->
+                <div class="format-section">
+                    <label><i class="fas fa-layer-group"></i> Pilih Format Mockup</label>
+                    <div class="format-grid" id="formatGrid">
+                        <!-- diisi JS -->
+                    </div>
+                </div>
+
+                <!-- Parameter Form -->
+                <div class="param-section">
+                    <label><i class="fas fa-sliders-h"></i> Isi Parameter</label>
+                    <div class="param-form" id="paramForm">
+                        <!-- form dinamis -->
+                    </div>
+                </div>
+
+                <!-- Tombol Generate & Hasil -->
+                <div class="action-section">
+                    <button id="generateBtn" class="btn-generate"><i class="fas fa-magic"></i> Generate Sekarang</button>
+                    
+                    <!-- Loading Real-time saat generate -->
+                    <div id="generateLoading" class="generate-loading hidden">
+                        <div class="loading-spinner">
+                            <div class="spinner-ring"></div>
+                            <div class="spinner-ring"></div>
+                            <div class="spinner-ring"></div>
+                        </div>
+                        <div class="loading-message" id="generateLoadingMessage">
+                            <i class="fas fa-paintbrush-fine"></i> Creating your mockup...
+                        </div>
+                        <div class="loading-progress">
+                            <div class="loading-progress-bar">
+                                <div class="loading-progress-fill" id="generateProgressFill"></div>
+                            </div>
+                            <span id="generateProgressPercent">0</span>%
+                        </div>
+                    </div>
+                    
+                    <div id="resultArea" class="result-area">
+                        <div class="result-placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>Hasil mockup akan tampil di sini</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <footer>
-            <p>⚡ QuickFake — gunakan dengan bijak untuk keperluan kreatif & edukasi</p>
-        </footer>
+            <footer>
+                <p>⚡ QuickFake — gunakan dengan bijak untuk keperluan kreatif & edukasi</p>
+            </footer>
+        </div>
     </div>
 
     <script src="script.js"></script>
