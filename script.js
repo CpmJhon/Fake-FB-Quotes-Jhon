@@ -82,7 +82,7 @@ function initSplashScreen() {
     
     const statusMessages = [
         { text: '🎨 Loading awesome features...', progress: 20 },
-        { text: '⚡ Connecting to ZENZX API...', progress: 40 },
+        { text: '⚡ Connecting to JHON API...', progress: 40 },
         { text: '✨ Preparing mockup generators...', progress: 60 },
         { text: '🚀 Almost ready...', progress: 80 },
         { text: '🎉 Welcome to QuickFake!', progress: 100 }
