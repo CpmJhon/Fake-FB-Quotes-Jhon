@@ -241,7 +241,10 @@ async function generateMockup() {
         
         const downloadBtn = document.getElementById('downloadImageBtn');
         if (downloadBtn) {
-            downloadBtn.onclick = async (e) => {
+            const newBtn = downloadBtn.cloneNode(true);
+            downloadBtn.parentNode.replaceChild(newBtn, downloadBtn);
+            
+            newBtn.onclick = async (e) => {
                 e.preventDefault();
                 if (typeof window.downloadImage === 'function') {
                     await window.downloadImage(imageUrl, `${activeFormat.id}_mockup_${Date.now()}.png`);
@@ -304,18 +307,24 @@ async function generateSSWeb() {
                         <i class="fas fa-download"></i> Download Screenshot
                     </button>
                 </div>
-                <p style="font-size:0.7rem; color:#6c757d; margin-top:12px;">📸 ${url}</p>
+                <p style="font-size:0.7rem; color:#6c757d; margin-top:12px;">📸 ${url.substring(0, 50)}${url.length > 50 ? '...' : ''}</p>
             </div>
         `;
         
         const downloadBtn = document.getElementById('sswebDownloadBtn');
         if (downloadBtn) {
-            downloadBtn.onclick = async (e) => {
+            const newBtn = downloadBtn.cloneNode(true);
+            downloadBtn.parentNode.replaceChild(newBtn, downloadBtn);
+            
+            newBtn.onclick = async (e) => {
                 e.preventDefault();
                 if (typeof window.downloadImage === 'function') {
                     await window.downloadImage(imageUrl, `screenshot_${Date.now()}.png`);
                 } else {
-                    window.open(imageUrl, '_blank');
+                    const a = document.createElement('a');
+                    a.href = imageUrl;
+                    a.download = `screenshot_${Date.now()}.png`;
+                    a.click();
                 }
             };
         }
