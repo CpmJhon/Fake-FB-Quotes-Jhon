@@ -53,7 +53,7 @@
                     <a href="#" class="nav-link active" data-page="home">
                         <i class="fas fa-home"></i> Beranda
                     </a>
-                      <a href="#" class="nav-link" data-page="ssweb">
+                    <a href="#" class="nav-link" data-page="ssweb">
                         <i class="fas fa-camera"></i> SSWeb
                     </a>
                     <a href="#" class="nav-link" data-page="howto">
@@ -87,17 +87,13 @@
                     <!-- Pilihan Format -->
                     <div class="format-section">
                         <label><i class="fas fa-layer-group"></i> Pilih Format Mockup</label>
-                        <div class="format-grid" id="formatGrid">
-                            <!-- diisi JS -->
-                        </div>
+                        <div class="format-grid" id="formatGrid"></div>
                     </div>
 
                     <!-- Parameter Form -->
                     <div class="param-section">
                         <label><i class="fas fa-sliders-h"></i> Isi Parameter</label>
-                        <div class="param-form" id="paramForm">
-                            <!-- form dinamis -->
-                        </div>
+                        <div class="param-form" id="paramForm"></div>
                     </div>
 
                     <!-- Tombol Generate & Hasil -->
@@ -136,7 +132,7 @@
             </div>
         </div>
 
-       <!-- PAGE: SSWEB (SCREENSHOT WEBSITE) - PARAMETER KOSONG -->
+        <!-- PAGE: SSWEB (SCREENSHOT WEBSITE) - PARAMETER KOSONG -->
         <div id="sswebPage" class="page-container">
             <div class="container">
                 <div class="main-card">
@@ -229,7 +225,7 @@
                             <div class="step-number">01</div>
                             <div class="step-icon"><i class="fas fa-layer-group"></i></div>
                             <h3>Pilih Format</h3>
-                            <p>Pilih format mockup yang diinginkan dari 12+ Pilih antara Mockup Generator atau SSWeb di menu navbar.</p>
+                            <p>Pilih format mockup yang diinginkan dari 13+ pilihan antara Mockup Generator atau SSWeb di menu navbar.</p>
                         </div>
                         
                         <div class="step-card">
@@ -264,6 +260,7 @@
                             <li>Jika download tidak berjalan, klik kanan pada gambar lalu pilih "Save image as..."</li>
                             <li><strong>SSWeb:</strong> Gunakan skala 2x atau 3x untuk hasil HD</li>
                             <li><strong>SSWeb:</strong> Pilih "Halaman Penuh: Ya" untuk screenshot seluruh halaman</li>
+                            <li><strong>YT Comment:</strong> Pastikan URL avatar valid dan dapat diakses publik</li>
                             <li>Gunakan URL gambar dari hosting gratis untuk mockup</li>
                         </ul>
                     </div>
@@ -343,6 +340,13 @@
                         <div class="guide-example"><strong>Parameter:</strong> Avatar URL, Konten URL, Username, Deskripsi, Like, Comment</div>
                     </div>
                     
+                    <div class="guide-section">
+                        <h3><i class="fab fa-youtube"></i> YT Comment (YouTube Comment)</h3>
+                        <p>Membuat komentar YouTube dengan avatar custom. Cocok untuk simulasi komentar di video YouTube, konten interaktif, atau kebutuhan kreatif lainnya.</p>
+                        <div class="guide-example"><strong>Parameter:</strong> Username, Komentar, URL Avatar</div>
+                        <div class="guide-example"><strong>Contoh:</strong> Username: "cpmjhon21", Komentar: "Kontennya keren banget!", Avatar: "https://example.com/avatar.jpg" → Hasil komentar YouTube dengan foto profil dan teks komentar</div>
+                    </div>
+                    
                     <div class="tips-section" style="margin-top: 2rem;">
                         <h3><i class="fas fa-info-circle"></i> Informasi Penting</h3>
                         <ul>
@@ -350,6 +354,7 @@
                             <li>Gunakan URL gambar yang valid (pastikan gambar dapat diakses publik)</li>
                             <li>Website ini gratis dan hanya untuk keperluan kreatif & edukasi</li>
                             <li>Hasil generate dapat digunakan untuk konten media sosial, presentasi, atau desain</li>
+                            <li>Fitur YT Comment menggunakan API dari deline.web.id</li>
                         </ul>
                     </div>
                 </div>
@@ -391,6 +396,30 @@ QuickFake adalah konten manipulasi digital yang dibuat secara instan atau cepat,
                     </div>
                     
                     <div class="docs-section">
+                        <h3><i class="fas fa-globe"></i> API Endpoint</h3>
+                        <div class="code-block">
+                            <pre><code>Base URL ZenZX: https://api.zenzxz.my.id/
+Base URL Deline: https://api.deline.web.id/
+
+Mockup:
+• /maker/brat?text=
+• /maker/fakecall?nama=&durasi=&avatar=
+• /maker/fakechannel?url=&name=&followers=&desc=&date=
+• /maker/fakedanav2?nominal=
+• /maker/fakefbcomment?name=&comment=&url=
+• /maker/fakegroup?url=&title=&number=&time=
+• /maker/fakegroupv2?url=&name=&members=&desc=&author=&date=
+• /maker/fakeigpost?avatar=&content=&username=&likes=&comment=&share=&repost=&date=&desc=
+• /maker/faketiktok?name=&username=&following=&followers=&likes=&url=
+• /maker/fakettcomment?url=&username=&comment=&date=
+• /maker/fakeytcomunity?avatar=&content=&username=&desc=&like=&comment=
+• /maker/ytcomment?username=&text=&avatar=   (dari deline.web.id) ⭐ FITUR BARU
+
+SSWeb: /tools/ssweb?url=&device=&full_page=&scale=</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="docs-section">
                         <h3><i class="fas fa-folder-tree"></i> Struktur File</h3>
                         <div class="code-block">
                             <pre><code>QuickFake/
@@ -407,16 +436,16 @@ QuickFake adalah konten manipulasi digital yang dibuat secara instan atau cepat,
                         <h3><i class="fas fa-cogs"></i> Fungsi Utama (script.js)</h3>
                         <table class="docs-table">
                             <thead>
-                                <tr><th>Fungsi</th><th>Deskripsi</th></tr>
+                                <tr><th>Fungsi</th><th>Deskripsi</th>怀孕
                             </thead>
                             <tbody>
-                                <tr><td><code>renderFormatGrid()</code></td><td>Menampilkan daftar format mockup yang tersedia</td></tr>
-                                <tr><td><code>renderParamForm()</code></td><td>Membuat form parameter dinamis sesuai format terpilih</td></tr>
-                                <tr><td><code>generateMockup()</code></td><td>Memanggil API, menampilkan loading real-time, dan menampilkan hasil</td></tr>
-                                <tr><td><code>showGenerateLoading()</code></td><td>Menampilkan animasi loading dengan progress bar real-time</td></tr>
-                                <tr><td><code>hideGenerateLoading()</code></td><td>Menyembunyikan loading dan mengembalikan tombol generate</td></tr>
-                                <tr><td><code>initSplashScreen()</code></td><td>Menampilkan splash screen dengan animasi progress</td></tr>
-                                <tr><td><code>initNavigation()</code></td><td>Menginisialisasi navigasi navbar antar halaman</td></tr>
+                                 etxek<class="code">renderFormatGrid()</code> </td><td>Menampilkan daftar format mockup yang tersedia</td> </tr>
+                                 <tr><td><code>renderParamForm()</code></td><td>Membuat form parameter dinamis sesuai format terpilih</td></tr>
+                                 <tr><td><code>generateMockup()</code></td><td>Memanggil API, menampilkan loading real-time, dan menampilkan hasil</td></tr>
+                                 <tr><td><code>showGenerateLoading()</code></td><td>Menampilkan animasi loading dengan progress bar real-time</td></tr>
+                                 <tr><td><code>hideGenerateLoading()</code></td><td>Menyembunyikan loading dan mengembalikan tombol generate</td></tr>
+                                 <tr><td><code>initSplashScreen()</code></td><td>Menampilkan splash screen dengan animasi progress</td></tr>
+                                 <tr><td><code>initNavigation()</code></td><td>Menginisialisasi navigasi navbar antar halaman</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -425,11 +454,11 @@ QuickFake adalah konten manipulasi digital yang dibuat secara instan atau cepat,
                         <h3><i class="fas fa-download"></i> Fungsi Download (download.js)</h3>
                         <table class="docs-table">
                             <thead>
-                                <tr><th>Fungsi</th><th>Deskripsi</th></tr>
+                                 <tr><th>Fungsi</th><th>Deskripsi</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td><code>downloadImage(url, filename)</code></td><td>Download gambar langsung ke perangkat tanpa membuka tab baru</td></tr>
-                                <tr><td><code>createToast(message, type)</code></td><td>Menampilkan notifikasi toast dengan animasi progress bar</td></tr>
+                                 <tr><td><code>downloadImage(url, filename)</code></td><td>Download gambar langsung ke perangkat tanpa membuka tab baru</td></tr>
+                                 <tr><td><code>createToast(message, type)</code></td><td>Menampilkan notifikasi toast dengan animasi progress bar</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -451,16 +480,13 @@ QuickFake adalah konten manipulasi digital yang dibuat secara instan atau cepat,
                     <div class="docs-section">
                         <h3><i class="fas fa-rocket"></i> Kontribusi & Pengembangan</h3>
                         <p>QuickFake bersifat eksperimental, kolaboratif, iteratif, aksesibel, dan fleksibel, sehingga mempercepat inovasi—namun tetap harus digunakan secara bertanggung jawab:</p>
-                        </div>
-                    <div>
                         <ul>
                             <li>Menambahkan format mockup baru dengan menambahkan object di array <code>formats</code> di script.js</li>
                             <li>Mengustomisasi tampilan di file <code>style.css</code></li>
                             <li>Menambahkan fitur export ke format lain (PDF, PNG, dll)</li>
                             <li>Menambahkan fitur share langsung ke media sosial</li>
                         </ul>
-                    </div>
-                    <p style="margin-top: 0.8rem;">Gunakan Website Ini secara bijaksana Tidak Untuk menipu atau pun lain Dev - JHON PRODUCTION Tidak Bertanggung Jawab Jika Di Salah Gunakan Website Ini Hanya untuk Edukasi Terimakasih.</p>
+                        <p style="margin-top: 0.8rem;">Gunakan Website Ini secara bijaksana Tidak Untuk menipu atau pun lain Dev - JHON PRODUCTION Tidak Bertanggung Jawab Jika Di Salah Gunakan Website Ini Hanya untuk Edukasi Terimakasih.</p>
                     </div>
                     
                     <div class="docs-section">
@@ -472,9 +498,23 @@ QuickFake adalah konten manipulasi digital yang dibuat secara instan atau cepat,
     icon: 'fas fa-font',
     endpoint: '/maker/brat',
     params: [{ name: 'text', label: 'Teks', type: 'text', placeholder: '...' }]
+}
+
+// Format YT Comment (FITUR BARU)
+{
+    id: 'ytcomment',
+    name: 'YT Comment',
+    icon: 'fab fa-youtube',
+    endpoint: '/maker/ytcomment',
+    baseUrl: 'https://api.deline.web.id',
+    params: [
+        { name: 'username', label: 'Username', type: 'text', placeholder: 'cpmjhon21' },
+        { name: 'text', label: 'Komentar', type: 'textarea', placeholder: 'Tulis komentar...' },
+        { name: 'avatar', label: 'URL Avatar', type: 'url', placeholder: 'https://example.com/avatar.jpg' }
+    ]
 }</code></pre>
                         </div>
-                        <p style="margin-top: 0.8rem;">Setiap format memiliki struktur yang sama dengan properti: <code>id</code>, <code>name</code>, <code>icon</code>, <code>endpoint</code>, dan <code>params</code> (array parameter).</p>
+                        <p style="margin-top: 0.8rem;">Setiap format memiliki struktur yang sama dengan properti: <code>id</code>, <code>name</code>, <code>icon</code>, <code>endpoint</code>, <code>baseUrl</code> (opsional), dan <code>params</code> (array parameter).</p>
                     </div>
                 </div>
             </div>

@@ -1,50 +1,56 @@
-// Daftar format mockup
+// Daftar format mockup (13 format termasuk YTComment)
 const formats = [
-    { id: 'brat', name: 'Brat Text', icon: 'fas fa-font', endpoint: '/maker/brat', params: [{ name: 'text', label: 'Teks', type: 'text', placeholder: 'Masukkan teks...' }] },
-    { id: 'fakecall', name: 'Fake Call', icon: 'fas fa-phone-alt', endpoint: '/maker/fakecall', params: [
+    { id: 'brat', name: 'Brat Text', icon: 'fas fa-font', endpoint: '/maker/brat', baseUrl: 'https://api.zenzxz.my.id', params: [{ name: 'text', label: 'Teks', type: 'text', placeholder: 'Masukkan teks...' }] },
+    { id: 'fakecall', name: 'Fake Call', icon: 'fas fa-phone-alt', endpoint: '/maker/fakecall', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'nama', label: 'Nama Penelepon', type: 'text', placeholder: 'Jhony' },
         { name: 'durasi', label: 'Durasi', type: 'text', placeholder: '19:31' },
         { name: 'avatar', label: 'URL Avatar', type: 'url', placeholder: 'https://cdn.discordapp.com/embed/avatars/0.png' }
     ] },
-    { id: 'fakechannel', name: 'Fake Channel', icon: 'fab fa-youtube', endpoint: '/maker/fakechannel', params: [
+    { id: 'fakechannel', name: 'Fake Channel', icon: 'fab fa-youtube', endpoint: '/maker/fakechannel', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'url', label: 'URL Gambar', type: 'url' }, { name: 'name', label: 'Nama Channel', type: 'text' },
         { name: 'followers', label: 'Followers', type: 'text' }, { name: 'desc', label: 'Deskripsi', type: 'text' },
         { name: 'date', label: 'Tanggal', type: 'text' }
     ] },
-    { id: 'fakedana', name: 'Fake DANA', icon: 'fas fa-wallet', endpoint: '/maker/fakedanav2', params: [{ name: 'nominal', label: 'Nominal', type: 'text', placeholder: 'Rp 100.000' }] },
-    { id: 'fbcomment', name: 'FB Comment', icon: 'fab fa-facebook', endpoint: '/maker/fakefbcomment', params: [
+    { id: 'fakedana', name: 'Fake DANA', icon: 'fas fa-wallet', endpoint: '/maker/fakedanav2', baseUrl: 'https://api.zenzxz.my.id', params: [{ name: 'nominal', label: 'Nominal', type: 'text', placeholder: 'Rp 100.000' }] },
+    { id: 'fbcomment', name: 'FB Comment', icon: 'fab fa-facebook', endpoint: '/maker/fakefbcomment', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'name', label: 'Nama', type: 'text' }, { name: 'comment', label: 'Komentar', type: 'text' },
         { name: 'url', label: 'URL Foto Profil', type: 'url' }
     ] },
-    { id: 'wagroup', name: 'WA Group', icon: 'fab fa-whatsapp', endpoint: '/maker/fakegroup', params: [
+    { id: 'wagroup', name: 'WA Group', icon: 'fab fa-whatsapp', endpoint: '/maker/fakegroup', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'url', label: 'URL Icon', type: 'url' }, { name: 'title', label: 'Judul', type: 'text' },
         { name: 'number', label: 'Jumlah Pesan', type: 'text' }, { name: 'time', label: 'Waktu', type: 'text' }
     ] },
-    { id: 'wagroupv2', name: 'WA Group V2', icon: 'fab fa-whatsapp', endpoint: '/maker/fakegroupv2', params: [
+    { id: 'wagroupv2', name: 'WA Group V2', icon: 'fab fa-whatsapp', endpoint: '/maker/fakegroupv2', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'url', label: 'URL Avatar', type: 'url' }, { name: 'name', label: 'Nama Admin', type: 'text' },
         { name: 'members', label: 'Member', type: 'text' }, { name: 'desc', label: 'Deskripsi', type: 'text' },
         { name: 'author', label: 'Author', type: 'text' }, { name: 'date', label: 'Tanggal', type: 'text' }
     ] },
-    { id: 'igpost', name: 'IG Post', icon: 'fab fa-instagram', endpoint: '/maker/fakeigpost', params: [
+    { id: 'igpost', name: 'IG Post', icon: 'fab fa-instagram', endpoint: '/maker/fakeigpost', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'avatar', label: 'URL Avatar', type: 'url' }, { name: 'content', label: 'URL Konten', type: 'url' },
         { name: 'username', label: 'Username', type: 'text' }, { name: 'likes', label: 'Likes', type: 'text' },
         { name: 'comment', label: 'Comments', type: 'text' }, { name: 'share', label: 'Share', type: 'text' },
         { name: 'repost', label: 'Repost', type: 'text' }, { name: 'date', label: 'Tanggal', type: 'text' },
         { name: 'desc', label: 'Caption', type: 'textarea' }
     ] },
-    { id: 'tiktokprofile', name: 'TikTok Profile', icon: 'fab fa-tiktok', endpoint: '/maker/faketiktok', params: [
+    { id: 'tiktokprofile', name: 'TikTok Profile', icon: 'fab fa-tiktok', endpoint: '/maker/faketiktok', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'name', label: 'Nama', type: 'text' }, { name: 'username', label: 'Username', type: 'text' },
         { name: 'following', label: 'Following', type: 'text' }, { name: 'followers', label: 'Followers', type: 'text' },
         { name: 'likes', label: 'Likes', type: 'text' }, { name: 'url', label: 'URL Foto', type: 'url' }
     ] },
-    { id: 'tiktokcomment', name: 'TikTok Comment', icon: 'fab fa-tiktok', endpoint: '/maker/fakettcomment', params: [
+    { id: 'tiktokcomment', name: 'TikTok Comment', icon: 'fab fa-tiktok', endpoint: '/maker/fakettcomment', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'url', label: 'URL Foto', type: 'url' }, { name: 'username', label: 'Username', type: 'text' },
         { name: 'comment', label: 'Komentar', type: 'text' }, { name: 'date', label: 'Tanggal', type: 'text' }
     ] },
-    { id: 'ytcommunity', name: 'YT Community', icon: 'fab fa-youtube', endpoint: '/maker/fakeytcomunity', params: [
+    { id: 'ytcommunity', name: 'YT Community', icon: 'fab fa-youtube', endpoint: '/maker/fakeytcomunity', baseUrl: 'https://api.zenzxz.my.id', params: [
         { name: 'avatar', label: 'URL Avatar', type: 'url' }, { name: 'content', label: 'URL Konten', type: 'url' },
         { name: 'username', label: 'Username', type: 'text' }, { name: 'desc', label: 'Deskripsi', type: 'text' },
         { name: 'like', label: 'Like', type: 'text' }, { name: 'comment', label: 'Comment', type: 'text' }
+    ] },
+    // YTCOMMENT - MENGGUNAKAN API DARI deline.web.id
+    { id: 'ytcomment', name: 'YT Comment', icon: 'fab fa-youtube', endpoint: '/maker/ytcomment', baseUrl: 'https://api.deline.web.id', params: [
+        { name: 'username', label: 'Username', type: 'text', placeholder: 'cpmjhon21' },
+        { name: 'text', label: 'Komentar', type: 'textarea', placeholder: 'Tulis komentar di sini...' },
+        { name: 'avatar', label: 'URL Avatar', type: 'url', placeholder: 'https://example.com/avatar.jpg' }
     ] }
 ];
 
@@ -59,12 +65,11 @@ function initSplashScreen() {
     const loadingStatus = document.getElementById('loadingStatus');
     
     const messages = [
-        { text: '🎨 Loading features...', progress: 5 },
-        { text: '⚡ Connecting to API...', progress: 20 },
-        { text: '✨ Preparing generators...', progress: 35 },
-        { text: '📸 Adding SSWeb...', progress: 55 },
-        { text: '📸 Adding Mockup Generator...', progress: 75 },
-        { text: '✨ QuickFake By Jhon...', progress: 85 },
+        { text: '🎨 Loading features...', progress: 20 },
+        { text: '⚡ Connecting to API...', progress: 40 },
+        { text: '✨ Preparing generators...', progress: 60 },
+        { text: '📸 Adding SSWeb...', progress: 75 },
+        { text: '💬 Adding YT Comment...', progress: 90 },
         { text: '🎉 Welcome to QuickFake!', progress: 100 }
     ];
     
@@ -84,7 +89,7 @@ function initSplashScreen() {
                 clearInterval(interval);
                 if (msgIndex < messages.length - 1) {
                     msgIndex++;
-                    const icons = ['', 'network-wired', 'palette', 'camera', 'check-circle'];
+                    const icons = ['', 'network-wired', 'palette', 'camera', 'comment', 'check-circle'];
                     loadingStatus.innerHTML = `<i class="fas fa-${icons[msgIndex]}"></i> ${messages[msgIndex].text}`;
                     updateProgress();
                 } else {
@@ -211,15 +216,36 @@ async function generateMockup() {
     let params = {};
     inputs.forEach(inp => { if (inp.value.trim()) params[inp.name] = encodeURIComponent(inp.value.trim()); });
     
+    // Validasi untuk brat text
     if (activeFormat.id === 'brat' && !params.text) {
         if (window.showToast) window.showToast('Masukkan teks terlebih dahulu', 'error');
         return;
     }
     
+    // Validasi untuk ytcomment
+    if (activeFormat.id === 'ytcomment') {
+        if (!params.username) {
+            if (window.showToast) window.showToast('Masukkan username terlebih dahulu', 'error');
+            return;
+        }
+        if (!params.text) {
+            if (window.showToast) window.showToast('Masukkan komentar terlebih dahulu', 'error');
+            return;
+        }
+        if (!params.avatar) {
+            if (window.showToast) window.showToast('Masukkan URL avatar terlebih dahulu', 'error');
+            return;
+        }
+    }
+    
     const { interval, fill, percent } = showGenerateLoading('');
     
-    let apiUrl = `https://api.zenzxz.my.id${activeFormat.endpoint}?`;
+    // Gunakan baseUrl yang sesuai untuk setiap format
+    const baseUrl = activeFormat.baseUrl || 'https://api.zenzxz.my.id';
+    let apiUrl = `${baseUrl}${activeFormat.endpoint}?`;
     apiUrl += Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&');
+    
+    console.log('Requesting:', apiUrl);
     
     try {
         const response = await fetch(apiUrl, { method: 'GET', mode: 'cors', headers: { 'Accept': 'image/*' } });
@@ -263,38 +289,35 @@ async function generateMockup() {
         if (window.showToast) window.showToast('Mockup berhasil dibuat!', 'success');
         
     } catch (err) {
+        console.error('Generate error:', err);
         resultDiv.innerHTML = `<div class="result-placeholder"><i class="fas fa-times-circle"></i><p>Gagal: ${err.message}</p></div>`;
         hideGenerateLoading(interval, fill, percent, false, '');
         if (window.showToast) window.showToast(err.message, 'error');
     }
 }
 
-// ========== SSWEB FUNCTIONS (DENGAN VALIDASI SEMUA PARAMETER) ==========
+// ========== SSWEB FUNCTIONS ==========
 async function generateSSWeb() {
     const url = document.getElementById('sswebUrl')?.value;
     const device = document.getElementById('sswebDevice')?.value;
     const fullPage = document.getElementById('sswebFullPage')?.value;
     const scale = document.getElementById('sswebScale')?.value;
     
-    // Validasi URL
     if (!url) {
         if (window.showToast) window.showToast('Masukkan URL website terlebih dahulu', 'error');
         return;
     }
     
-    // Validasi perangkat
     if (!device) {
         if (window.showToast) window.showToast('Pilih perangkat (Desktop/Mobile/Tablet)', 'error');
         return;
     }
     
-    // Validasi halaman penuh
     if (!fullPage) {
         if (window.showToast) window.showToast('Pilih opsi Halaman Penuh (Ya/Tidak)', 'error');
         return;
     }
     
-    // Validasi skala
     if (!scale) {
         if (window.showToast) window.showToast('Pilih skala (1x/2x/3x)', 'error');
         return;
@@ -308,14 +331,11 @@ async function generateSSWeb() {
     if (fullPage) apiUrl += `&full_page=${fullPage}`;
     if (scale) apiUrl += `&scale=${scale}`;
     
-    console.log('SSWeb Request:', apiUrl);
-    
     try {
         const response = await fetch(apiUrl, { method: 'GET', mode: 'cors' });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
         const data = await response.json();
-        console.log('SSWeb Response:', data);
         
         if (!data.status || !data.result?.url) {
             throw new Error(data.message || 'Gagal mengambil screenshot');
