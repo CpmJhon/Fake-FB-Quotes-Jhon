@@ -875,6 +875,8 @@ footer {
     font-size: 0.85rem;
     color: #9ca3af;
     margin-top: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .docs-section {
@@ -902,6 +904,7 @@ footer {
     font-size: 0.8rem;
     color: #9ca3af;
     white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .docs-table {

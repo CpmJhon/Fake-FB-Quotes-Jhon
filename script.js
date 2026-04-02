@@ -568,6 +568,5 @@ function initNavigation() {
 if (verificationCompleted) {
     // Already handled above
 } else {
-    // Gate page is active, nothing to initialize yet
     console.log('Waiting for verification...');
 }
