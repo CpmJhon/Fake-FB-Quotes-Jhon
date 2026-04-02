@@ -912,7 +912,8 @@ footer {
     border-collapse: collapse;
 }
 
-.docs-table th, .docs-table td {
+.docs-table th,
+.docs-table td {
     padding: 0.8rem;
     text-align: left;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -920,6 +921,11 @@ footer {
 
 .docs-table th {
     color: #3b82f6;
+    font-weight: 600;
+}
+
+.docs-table td {
+    color: #cbd5e6;
 }
 
 .docs-table code {
@@ -969,4 +975,14 @@ footer {
     .steps-grid { grid-template-columns: 1fr; }
     .content-card { padding: 1.2rem; }
     .content-header h2 { font-size: 1.5rem; }
+}
+
+.docs-table {
+        font-size: 0.8rem;
+    }
+    
+    .docs-table th,
+    .docs-table td {
+        padding: 0.5rem;
+    }
 }
